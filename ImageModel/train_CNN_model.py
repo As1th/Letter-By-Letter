@@ -3,17 +3,37 @@
 """
 import numpy as np
 import pandas as pd
-import cv2
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-import tensorflow as tf
+from keras import backend as K
 from keras.models import Sequential, load_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras import layers
+from keras import metrics
 from keras.layers import *
 from keras.utils import np_utils
-from tqdm import tqdm
-import os
+
+def recall(y_true, y_pred):
+    y_true = K.ones_like(y_true) 
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    all_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    
+    recall = true_positives / (all_positives + K.epsilon())
+    return recall
+
+def precision(y_true, y_pred):
+    y_true = K.ones_like(y_true) 
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+def f1_score(y_true, y_pred):
+    precision1 = precision(y_true, y_pred)
+    recall1 = recall(y_true, y_pred)
+    return 2*((precision1*recall1)/(precision1+recall1+K.epsilon()))
+
 
 #load training data
 train_data = pd.read_csv('./dataset/emnist-balanced-train.csv', header=None) #needs to be unzipped first
@@ -70,7 +90,10 @@ model.summary()
 
 #train model
 optimizer_name = 'adam'
-model.compile(loss='categorical_crossentropy', optimizer=optimizer_name, metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=optimizer_name, metrics=['accuracy',
+                                                                                f1_score, precision, recall,
+                                                                                tf.keras.metrics.AUC(),
+                                                                                metrics.categorical_accuracy])
 
 early_stopping = EarlyStopping(monitor='val_loss', patience=4, verbose=1, mode='min')
 mcp_save = ModelCheckpoint('balanced_recognition_model.h5', save_best_only=True, monitor='val_loss', verbose=1, mode='auto')

@@ -3,8 +3,8 @@
 """
 import cv2
 import tensorflow as tf
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import numpy as np
+import pandas as pd
 character_mapping = pd.read_csv("./dataset/emnist-balanced-mapping.txt", 
                         delimiter = ' ', 
                         index_col=0, 
@@ -15,15 +15,6 @@ character_mapping = pd.read_csv("./dataset/emnist-balanced-mapping.txt",
 character_dictionary = {}
 for index, label in enumerate(character_mapping):
     character_dictionary[index] = chr(label)
-
-#edits dataset image to usable form (see visualise_dataset.py for more info)
-def reshape_and_rotate(image):
-    W = 28
-    H = 28
-    image = image.reshape(W, H)
-    image = np.fliplr(image)
-    image = np.rot90(image)
-    return image
 
 #prepares input image by adjusting colours, b/w filter, and resizing
 def prepare(file, BWsensitivity):
@@ -47,7 +38,7 @@ def prepare(file, BWsensitivity):
 
 image = "./ImageModel/test.png" #input image path
 model = tf.keras.models.load_model('./ImageModel/balanced_recognition_model.h5') #trained model path
-BWsensitivity = 130 #sensitivity of black/white filter. This could be user-adjusted
+BWsensitivity = 128 #sensitivity of black/white filter. This could be user-adjusted
 image = prepare(image, BWsensitivity)
 
 prediction = model.predict([image])

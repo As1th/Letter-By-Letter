@@ -3,7 +3,6 @@
 """
 import numpy as np
 import pandas as pd
-import cv2
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
@@ -11,9 +10,6 @@ from keras.models import Sequential, load_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras import layers
 from keras.layers import *
-from keras.utils import np_utils
-from tqdm import tqdm
-import os
 
 #data to visualise
 train_data = pd.read_csv('./dataset/emnist-balanced-test.csv', header=None)
@@ -33,13 +29,13 @@ for index, label in enumerate(character_map):
     character_dictionary[index] = chr(label)
 
 #visualising random dataset images
-sample_image = X_train.iloc[41]
-sample_label = y_train.iloc[41]
+sample_image = X_train.iloc[31]
+sample_label = y_train.iloc[31]
 
 W = 28
 H = 28
 
-print("Label entry 41:", character_dictionary[sample_label])
+print("Label entry 31:", character_dictionary[sample_label])
 plt.imshow(sample_image.values.reshape(W, H), cmap=plt.cm.gray)
 plt.show()
 
@@ -52,15 +48,15 @@ def reshape_and_rotate(image):
     image = np.rot90(image)
     return image
 
-print("Label entry 41:", character_dictionary[sample_label])
+print("Label entry 31:", character_dictionary[sample_label])
 plt.imshow(reshape_and_rotate(sample_image.values), cmap=plt.cm.gray)
 plt.show()
 
 X_train = np.apply_along_axis(reshape_and_rotate, 1, X_train.values)
 
-sample_image = X_train[41]
-sample_label = y_train.iloc[41]
-print("Label entry 42:", character_dictionary[sample_label])
+sample_image = X_train[28]
+sample_label = y_train.iloc[28]
+print("Label entry 28:", character_dictionary[sample_label])
 plt.imshow(sample_image.reshape(W, H), cmap=plt.cm.gray)
 plt.show()
 
