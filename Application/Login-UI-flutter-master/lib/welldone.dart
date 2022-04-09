@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class WellDone extends StatefulWidget {
   const WellDone({Key? key}) : super(key: key);
 
@@ -21,11 +23,11 @@ class _WellDoneState extends State<WellDone> {
           children: [
             Container(),
             Container(
-              padding: EdgeInsets.only(left: 85, top: 140),
+              padding: EdgeInsets.only(left: 25, top: 88),
               child: Text(
-                'WELL DONE!',
+                'WELL DONE!😎\nYou got '+score.toString()+'% !',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black87, fontSize: 45,fontWeight:FontWeight.bold ),
+                style: TextStyle(color: Colors.amberAccent.shade700, fontSize: 44,fontWeight:FontWeight.bold ),
               ),
             ),
             SingleChildScrollView(
@@ -51,7 +53,7 @@ class _WellDoneState extends State<WellDone> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "      Congratulations!!!\n Now you are eligible for\n scan hand written letters",
+                                "      Congratulations!\nWe'd give that letter a\nreally good score of "+score.toString()+"! \n                 😋\n\n      You unlocked the \n         next exercise!\n         Keep going! 😄",
 
                                 style: TextStyle(
                                     fontSize: 22, fontWeight: FontWeight.bold, color: Colors.pink),
@@ -70,10 +72,10 @@ class _WellDoneState extends State<WellDone> {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'register');
+                                  Navigator.pushNamed(context, 'home');
                                 },
                                 child: Text(
-                                  'Back',
+                                  'Home',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     // decoration: TextDecoration.underline,
@@ -83,7 +85,9 @@ class _WellDoneState extends State<WellDone> {
                                 style: ButtonStyle(),
                               ),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'exercisepage');
+                                  },
                                   child: Text(
                                     'Menu',
                                     style: TextStyle(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class Wrong extends StatefulWidget {
   const Wrong({Key? key}) : super(key: key);
 
@@ -21,9 +23,9 @@ class _WrongState extends State<Wrong> {
           children: [
             Container(),
             Container(
-              padding: EdgeInsets.only(left: 85, top: 140),
+              padding: EdgeInsets.only(left: 25, top: 88),
               child: Text(
-                'WRONG!',
+                'Not Quite! 😔 \nYou got '+score.toString()+'% !',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.red, fontSize: 45,fontWeight:FontWeight.bold ),
               ),
@@ -51,7 +53,7 @@ class _WrongState extends State<Wrong> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "    PLEASE TRY AGAIN",
+                                "      Don't worry! 🤗\n It just takes practice!  \n    Sometimes we get \n      it wrong too! \n     Just try again! 🤐",
 
                                 style: TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold, color: Colors.pink),
@@ -70,10 +72,10 @@ class _WrongState extends State<Wrong> {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'register');
+                                  Navigator.pushNamed(context, 'home');
                                 },
                                 child: Text(
-                                  'Back',
+                                  'Home',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     // decoration: TextDecoration.underline,
@@ -83,7 +85,9 @@ class _WrongState extends State<Wrong> {
                                 style: ButtonStyle(),
                               ),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'exercisepage');
+                                  },
                                   child: Text(
                                     'Menu',
                                     style: TextStyle(

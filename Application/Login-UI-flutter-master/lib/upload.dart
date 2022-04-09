@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'main.dart';
+
+
+
+
+
 
 class MyUpload extends StatefulWidget {
   const MyUpload({Key? key}) : super(key: key);
@@ -8,8 +17,37 @@ class MyUpload extends StatefulWidget {
 }
 
 class _MyUploadState extends State<MyUpload> {
+  // get image from camera, resize to 28x28, encode to base64
+  String imageData = "iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAIAAAD9b0jDAAABeklEQVRIDa3BoU5yAQCG4e/dHIniBbgRsbCZnI1iZHMkbQ5vgGSyGQ3eABvFQTKYTRQCSaubjZExE94/sXEmB84/eR7UHBpqDg01h4aaQ0NNBYCaalCzD5BkOp1eXFykAtTsA7y/v19eXqqpADU7AXd3d4PBAFBTAWp2AtQkQL/ff35+zj6oKQe8vr52u90kHx8fZ2dnavZBTTlAzRqgZh/UlDg6Orq+vn55eclas9lcrVbf39/ZCTUlADVFgJqdULPN29vb1dWVmqJardZoNL6+vlIONdsAKaemHGq2AdRsMxwOe72emhKo+eX09HSxWPz8/KQEMBwOb29vsw1qfgHU7ASo2QY1Rff3909PT2p2ms1m5+fnan5BTRHw+Pj48PCQfYDPz89Wq5Ui1BQBaipYLpfHx8dqilBTBKipBhiNRjc3N9mAmg31er3T6YzH41QzmUza7baaDajZAKj5H4CaDahZOzk5mc/nav4GNWuAmj9DzaGh5tD+AbfK5smRuZv2AAAAAElFTkSuQmCC";
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, //this means the user must tap a button to exit the Alert Dialog
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Loading!'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text("You wrote a letter!\nWe're trying to calculate your score! 😄"),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(''),
+                onPressed: () {
+
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -98,7 +136,48 @@ class _MyUploadState extends State<MyUpload> {
                                 style: ButtonStyle(),
                               ),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    if (loading == false) {
+                                      loading = true;
+
+                                      score = 0;
+                                      _showMyDialog();
+
+                                      final url = 'https://letter0by0letter-5g370ahsihf594u3.socketxp.com/score';
+                                      try {
+                                        final response = await http.post(
+                                            Uri.parse(url), body: json.encode({
+                                          'img': imageData,
+                                          'target': target
+                                        }));
+                                        final decoded = json.decode(
+                                            response.body) as Map<
+                                            String,
+                                            dynamic>;
+                                        score = decoded['score'];
+
+                                        print(score);
+                                        highScores[exerciseNumber] =
+                                            score.toString();
+
+                                        if (score > 65) {
+                                          gateways[(exerciseNumber + 1)] = 1;
+                                          highScores[exerciseNumber + 1] = "0";
+                                          Navigator.pushNamed(
+                                              context, 'welldone');
+                                        } else {
+                                          Navigator.pushNamed(context, 'wrong');
+                                        }
+                                      }
+                                      catch (e) {
+                                        print(
+                                            "Server error. Server is probably offline.");
+                                        Navigator.pushNamed(
+                                            context, 'servererror');
+                                      }
+                                    }
+
+                                  },
                                   child: Text(
                                     'OK',
                                     style: TextStyle(

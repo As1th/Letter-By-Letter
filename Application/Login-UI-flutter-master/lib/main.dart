@@ -10,11 +10,16 @@ import 'package:loginuicolors/register.dart';
 import 'package:loginuicolors/upload.dart';
 import 'package:loginuicolors/welldone.dart';
 import 'package:loginuicolors/wrong.dart';
-
 import 'exercise4.dart';
 import 'exercise5.dart';
 import 'exercise6.dart';
+import 'severError.dart';
 
+var score= 0;
+var exerciseNumber = 0;
+var target = "A_U";
+var gateways = [1,0,0,0,0,0];
+var highScores = ["0","LOCK","LOCK","LOCK","LOCK","LOCK"];
 
 void main() {
   runApp(MaterialApp(
@@ -35,6 +40,7 @@ void main() {
       'exercise4': (context) => MyExercise4(),
       'exercise5': (context) => MyExercise5(),
       'exercise6': (context) => MyExercise6(),
+      'servererror': (context) => MyError(),
     },
   ));
 }
