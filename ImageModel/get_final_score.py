@@ -1,12 +1,11 @@
 import cv2
 import tensorflow as tf
-import numpy as np
 import pandas as pd
 import base64
 from skimage.metrics import structural_similarity
 
 #image encoded in base64. Should be from Flutter app
-imageData = 'iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAIAAAD9b0jDAAAFVUlEQVRIDU3BXW9d1RUF0Dnn2vteO7YxoRhQEDyVKhJC9K1q/zWVCsoXNA51k7R9qXhCVapCVYgiY5zEuT3n7LVm7SuBOgYf3P0UJmjSq9VqWuagbLfW7FSoElWIYFX5UhlCiwaAVGsxTXOVudV7T5tf3vtMEoCqighcqUsRUVWSxhiSeu/LsvAnACQBsrMKP+u9VxW/vPcH0gDIuAQgMwFkZu9RJdtVBUBS5tT7OiLGGLwStiUBsA1AUmby8YM7dlbBJmkA6/Xq5cuLvb29i4uL7757evT22//4+uvW2s7OzmZzsbu7a3ualvV6/f777/febWdma40kSNg8Ob5Vy1it1tM0k5b0ySe/z6wPP/xwnudlWfp6/dr+/uHh4f7+vqTVal2VtrEliWRVSQIgyVl8dHw7M1tr0zTF1snJyUcffbyzs9N7H2NAIlljAKiqiAAQEdiS5EukcMV2750nX3zWWquqiFgqSZ6env7n39/9+uOPM1OCxbEMFAoQQBJA7x0om9gqIHilqiTx5PiWDNvYOjs7i9Xqq79/9bvf/qagaGyKygLlKgCkq1A1qAbSVSEBYARtSVXFxw/uACA5xpBk4+nT709Pz27e/FXvHQBpFE0BID3Pc0QnbfOStyKCZFVJqir+9U/3xhgkI2JZkvQ8jydPnty8+Uup2ZZkW5LtZVkkRHQ77QBgZ0SrsiTSAGzx8YM7mcn/s9lcfP/9s3ffvbGzs2M7M5dlWa1WmSnp1atXz5+/bE2r1c7BwYFtiRGqKm4Z4qPj2wBIVhUA21V1dvbD0dHRZjNP0yYzp2lqrb14cb4sZWNvb293d/f69evRmkgpyMo0SaAQwZMvPosISZkJwLbEZ89Onzz559HR0enp6QcffLC/v7+3t3dxcUGytbYsS0S01qqqNWWaTLKbRJUBPjq+ra1lWQCQHGP58cfzvb2D3d3dzGxN0zSRQTIiSNuwERG2JQGwHcSCIsI2//T5p601bY0xqioznz9/LrXXX39dUlXZBsAtoABWubVmGwC3vMUIXnp4/5YJkFVFoMpBbjab09OzGzdu0ICKFEmAAAFXGYCkzIyIqgLQWuPPHt6/BUDSZrNZrVbDxXLm+OGH8zfeeKP3npmtNZKtaZ7nKrTWqgpARIwxSK7X681m03tvq9U0TXx0fJuk7TEGgKqyUJVPnz578xdvrXsHShKvRA4bGRHcAhAR8zxXVWuNZGa21vjo+DZQgDLTZlW1Jpv/+vbbt95889q1a7Zba1UVEbXVex9jRMQ0Ta01krZJSqoqAHx4/5adZFQVUEBUWdL5+dm1a/t9tXINkq0JkE0AJKtK0rIsJG1HBLdsVxUfHd+VUFUASNhalgXA+fl5a+3w8BBkZrYICZJM1CgYZQMgGRH4SVVlJv/8x9urVRtj2M5MMnrvAF69ejVN02uv7WempKAKjghAEZymySYA2+v1Glskq8o2//Ll3Xmee+8AlmUB1FoD8OLFi3mM69ev2+YlWRISpKsKkLcASIoIAJIyUxIfHd+d5/+21mzrSstMksuynJ2dvfPOO0tmRFAmwpmSqkrSGAMAyYiQRNJbAPj4wb2qAhwhm2OMuMJlyWfPnh0dHUkimZmtNWxlZkQAGGOQjAhJ8xittRqj987HD+5VVWstc8nMiCADqEx/88037733nqTVapWZkqoKAMkxBgDbJCXhkgQgyLT58P4dSUCRBoStZVki4vz8xcHBQe/dNgBJYwxJALwFgKQkkqPq5cuXhwcHAPi3k8/HGBFRVbYzs/duA6CkeZ4BtNYkeau1Ns8zycxcr9eMsJ2ZuFQVEVX1PyAUu50Fd7WAAAAAAElFTkSuQmCC'
+imageData = 'iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAIAAAD9b0jDAAABeklEQVRIDa3BoU5yAQCG4e/dHIniBbgRsbCZnI1iZHMkbQ5vgGSyGQ3eABvFQTKYTRQCSaubjZExE94/sXEmB84/eR7UHBpqDg01h4aaQ0NNBYCaalCzD5BkOp1eXFykAtTsA7y/v19eXqqpADU7AXd3d4PBAFBTAWp2AtQkQL/ff35+zj6oKQe8vr52u90kHx8fZ2dnavZBTTlAzRqgZh/UlDg6Orq+vn55eclas9lcrVbf39/ZCTUlADVFgJqdULPN29vb1dWVmqJardZoNL6+vlIONdsAKaemHGq2AdRsMxwOe72emhKo+eX09HSxWPz8/KQEMBwOb29vsw1qfgHU7ASo2QY1Rff3909PT2p2ms1m5+fnan5BTRHw+Pj48PCQfYDPz89Wq5Ui1BQBaipYLpfHx8dqilBTBKipBhiNRjc3N9mAmg31er3T6YzH41QzmUza7baaDajZAKj5H4CaDahZOzk5mc/nav4GNWuAmj9DzaGh5tD+AbfK5smRuZv2AAAAAElFTkSuQmCC'
 
 imageData = base64.b64decode(imageData)
 with open('./ImageModel/test.png', "wb") as imageFile:
@@ -14,7 +13,7 @@ with open('./ImageModel/test.png', "wb") as imageFile:
     imageFile.close
     imageFile = './ImageModel/test.png'
 
-target = "F_U" #letter for this excercise. Should be from Flutter app
+target = "A_U" #letter for this excercise. Should be from Flutter app
 comparison = './ImageModel/CharacterImages/'+target+'.png'
 model = tf.keras.models.load_model('./ImageModel/balanced_recognition_model.h5') #trained model path
 
@@ -90,7 +89,7 @@ for BWsensitivity in range (100, 250, 5):
 
     ssim = ssim * 100
     shape = shape * 1000
-    score = ssim - shape + 26
+    score = ssim - shape + 30
     if modelSuccess:
         score += 25
         print("success added")
@@ -113,3 +112,10 @@ for BWsensitivity in range (100, 250, 5):
       highScore = score
 
 print(highScore)
+
+
+
+print(tf.__version__)
+print(cv2.__version__)
+print(pd.__version__)
+print(Flask.__version__)
