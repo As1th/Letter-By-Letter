@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+class MyError extends StatefulWidget {
+  const MyError({Key? key}) : super(key: key);
 
   @override
-  _MyLoginState createState() => _MyLoginState();
+  _MyErrorState createState() => _MyErrorState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _MyErrorState extends State<MyError> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,9 +21,9 @@ class _MyLoginState extends State<MyLogin> {
           children: [
             Container(),
             Container(
-              padding: EdgeInsets.only(left: 67, top: 140),
+              padding: EdgeInsets.only(left: 20, top: 95),
               child: Text(
-                'SERVER ERROR!',
+                'Server Error 😥',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.red, fontSize: 40,fontWeight:FontWeight.bold ),
               ),
@@ -51,7 +51,7 @@ class _MyLoginState extends State<MyLogin> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "    PLEASE TRY AGAIN",
+                                "    This is our fault!😷\n             Sorry!\n        We slipped\n          and fell.\n   Please try taking\n that picture again!🤗",
 
                                 style: TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold, color: Colors.pink),
@@ -59,16 +59,6 @@ class _MyLoginState extends State<MyLogin> {
 
 
 
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xff4c505b),
-                                child: IconButton(
-                                    color: Colors.white,
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.arrow_forward,
-                                    )),
-                              )
                             ],
                           ),
                           SizedBox(
@@ -79,10 +69,10 @@ class _MyLoginState extends State<MyLogin> {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'register');
+                                  Navigator.pushNamed(context, 'home');
                                 },
                                 child: Text(
-                                  'Back',
+                                  'Home',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     // decoration: TextDecoration.underline,
@@ -92,7 +82,9 @@ class _MyLoginState extends State<MyLogin> {
                                 style: ButtonStyle(),
                               ),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'exercisepage');
+                                  },
                                   child: Text(
                                     'Menu',
                                     style: TextStyle(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class ExercisePage extends StatefulWidget {
   const ExercisePage({Key? key}) : super(key: key);
 
@@ -24,7 +26,7 @@ class _ExercisePageState extends State<ExercisePage> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 35, top: 38),
+              padding: EdgeInsets.only(left: 45, top: 38),
               child: Text(
                 'Exercise Page',
                 style: TextStyle(color: Colors.black, fontSize: 45,fontWeight:FontWeight.bold),
@@ -44,10 +46,12 @@ class _ExercisePageState extends State<ExercisePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             child: FlatButton(
-                              child: Text('   EXERCISES 1    ', style: TextStyle(fontSize: 28.0),),
+                              child: Text('  A - SCORE : '+ highScores[0]+'    ', style: TextStyle(fontSize: 28.0),),
                               color: Colors.green,
                               textColor: Colors.white,
                               onPressed: () {
+                                exerciseNumber = 0;
+                                target = "A_U";
                                 Navigator.pushNamed(context, 'exercise');
                               },
                             ),
@@ -56,11 +60,17 @@ class _ExercisePageState extends State<ExercisePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             child: FlatButton(
-                              child: Text('  EXERCISES 2   ', style: TextStyle(fontSize: 28.0),),
+                              child: Text('  B - SCORE : '+ highScores[1]+'    ', style: TextStyle(fontSize: 28.0),),
                               color: Colors.orange,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'exercise2');
+                                if(gateways[1] == 1) {
+                                  exerciseNumber = 1;
+                                  target = "B_U";
+                                  Navigator.pushNamed(context, 'exercise2');
+                                } else {
+
+                                }
                               },
                             ),
                           ),
@@ -69,11 +79,17 @@ class _ExercisePageState extends State<ExercisePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             child: FlatButton(
-                              child: Text('   EXERCISES 3  ', style: TextStyle(fontSize: 28.0),),
+                              child: Text('  C - SCORE : '+ highScores[2]+'    ', style: TextStyle(fontSize: 28.0),),
                               color: Colors.red,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'exercise3');
+                                if(gateways[2] == 1) {
+                                  exerciseNumber = 2;
+                                  target = "C_U";
+                                  Navigator.pushNamed(context, 'exercise3');
+                                } else {
+
+                                }
                               },
                             ),
                           ),
@@ -82,11 +98,17 @@ class _ExercisePageState extends State<ExercisePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             child: FlatButton(
-                              child: Text('   EXERCISES 4   ', style: TextStyle(fontSize: 28.0),),
+                              child: Text('  D - SCORE : '+ highScores[3]+'    ', style: TextStyle(fontSize: 28.0),),
                               color: Colors.blue,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'exercise4');
+                                if(gateways[3] == 1) {
+                                  exerciseNumber = 3;
+                                  target = "D_U";
+                                  Navigator.pushNamed(context, 'exercise3');
+                                } else {
+
+                                }
                               },
                             ),
                           ),
@@ -94,11 +116,17 @@ class _ExercisePageState extends State<ExercisePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             child: FlatButton(
-                              child: Text('   EXERCISES 5  ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.yellowAccent,
+                              child: Text('  E - SCORE : '+ highScores[4]+'    ', style: TextStyle(fontSize: 28.0),),
+                              color: Colors.yellow,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'exercise5');
+                                if(gateways[4] == 1) {
+                                  exerciseNumber = 4;
+                                  target = "E_U";
+                                  Navigator.pushNamed(context, 'exercise4');
+                                } else {
+
+                                }
                               },
                             ),
                           ),
@@ -106,11 +134,17 @@ class _ExercisePageState extends State<ExercisePage> {
                           Container(
                             margin: EdgeInsets.all(15),
                             child: FlatButton(
-                              child: Text('   EXERCISES 6   ', style: TextStyle(fontSize: 28.0),),
+                              child: Text('  F - SCORE : '+ highScores[5]+'    ', style: TextStyle(fontSize: 28.0),),
                               color: Colors.pink,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'exercise6');
+                                if(gateways[5] == 1) {
+                                  exerciseNumber = 5;
+                                  target = "F_U";
+                                  Navigator.pushNamed(context, 'exercise5');
+                                } else {
+
+                                }
                               },
                             ),
                           ),

@@ -109,7 +109,7 @@ class _MyExercise5State extends State<MyExercise5> {
                                     Navigator.pushNamed(context, 'home');
                                   },
                                   child: Text(
-                                    'Menu',
+                                    'Home',
                                     style: TextStyle(
                                       // decoration: TextDecoration.underline,
                                       color: Colors.black,

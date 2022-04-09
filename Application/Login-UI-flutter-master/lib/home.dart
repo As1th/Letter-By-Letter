@@ -56,7 +56,7 @@ class _MyHomeState extends State<MyHome> {
                           Container(
                             margin: EdgeInsets.all(25),
                             child: FlatButton(
-                              child: Text('  MY ACCOUNT  ', style: TextStyle(fontSize: 35.0),),
+                              child: Text('MY ACCOUNT', style: TextStyle(fontSize: 34.0),),
                               color: Colors.orange,
                               textColor: Colors.white,
                               onPressed: () {
