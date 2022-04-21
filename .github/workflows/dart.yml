@@ -4,6 +4,9 @@
 # documentation.
 
 name: Dart
+defaults:
+  run:
+    working-directory: Application/Login-UI-flutter-master
 
 on:
   push:
