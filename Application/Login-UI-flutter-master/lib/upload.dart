@@ -37,7 +37,7 @@ class _MyUploadState extends State<MyUpload> {
               ),
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text(''),
                 onPressed: () {
 

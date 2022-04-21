@@ -45,10 +45,12 @@ class _ExercisePageState extends State<ExercisePage> {
                         children: [
                           Container(
                             margin: EdgeInsets.all(15),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('  A - SCORE : '+ highScores[0]+'    ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.green,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.green,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 exerciseNumber = 0;
                                 target = "A_U";
@@ -59,10 +61,12 @@ class _ExercisePageState extends State<ExercisePage> {
 
                           Container(
                             margin: EdgeInsets.all(15),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('  B - SCORE : '+ highScores[1]+'    ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.orange,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 if(gateways[1] == 1) {
                                   exerciseNumber = 1;
@@ -78,10 +82,12 @@ class _ExercisePageState extends State<ExercisePage> {
 
                           Container(
                             margin: EdgeInsets.all(15),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('  C - SCORE : '+ highScores[2]+'    ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.red,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 if(gateways[2] == 1) {
                                   exerciseNumber = 2;
@@ -97,10 +103,12 @@ class _ExercisePageState extends State<ExercisePage> {
 
                           Container(
                             margin: EdgeInsets.all(15),
-                            child: FlatButton(
+                            child:TextButton(
                               child: Text('  D - SCORE : '+ highScores[3]+'    ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.blue,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 if(gateways[3] == 1) {
                                   exerciseNumber = 3;
@@ -115,10 +123,13 @@ class _ExercisePageState extends State<ExercisePage> {
 
                           Container(
                             margin: EdgeInsets.all(15),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('  E - SCORE : '+ highScores[4]+'    ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.yellow,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.yellow,
+                                primary: Colors.white,
+                              ),
+
                               onPressed: () {
                                 if(gateways[4] == 1) {
                                   exerciseNumber = 4;
@@ -133,10 +144,12 @@ class _ExercisePageState extends State<ExercisePage> {
 
                           Container(
                             margin: EdgeInsets.all(15),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('  F - SCORE : '+ highScores[5]+'    ', style: TextStyle(fontSize: 28.0),),
-                              color: Colors.pink,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.pink,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 if(gateways[5] == 1) {
                                   exerciseNumber = 5;

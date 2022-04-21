@@ -43,10 +43,12 @@ class _MyHomeState extends State<MyHome> {
                         children: [
                           Container(
                             margin: EdgeInsets.all(25),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('   EXERCISES   ', style: TextStyle(fontSize: 35.0),),
-                              color: Colors.green,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.green,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 Navigator.pushNamed(context, 'exercisepage');
                               },
@@ -55,10 +57,12 @@ class _MyHomeState extends State<MyHome> {
 
                           Container(
                             margin: EdgeInsets.all(25),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('MY ACCOUNT', style: TextStyle(fontSize: 34.0),),
-                              color: Colors.orange,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {
                                 Navigator.pushNamed(context, 'account');
                               },
@@ -68,10 +72,12 @@ class _MyHomeState extends State<MyHome> {
 
                           Container(
                             margin: EdgeInsets.all(25),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text('  LOGOUT  ', style: TextStyle(fontSize: 35.0),),
-                              color: Colors.red,
-                              textColor: Colors.white,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                primary: Colors.white,
+                              ),
                               onPressed: () {},
                             ),
                           ),
