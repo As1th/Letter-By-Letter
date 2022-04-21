@@ -35,13 +35,13 @@ jobs:
     
     # Check for any formatting issues in the code.
     - name: Verify formatting
-      run: flutter format
+      run: flutter format .
     
     # Statically analyze the Dart code for any errors.
     - name: Analyze project source
       run: flutter analyze
     
-    # Run widget tests for our flutter project.
-    - name: Run tests
-      run: flutter test
+    # Run widget tests for our flutter project. No tests have been written yet.
+    #- name: Run tests
+    #  run: flutter test
     
