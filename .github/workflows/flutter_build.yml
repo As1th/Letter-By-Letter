@@ -34,7 +34,7 @@ jobs:
       id: get-flutter-version
       uses: zgosalvez/github-actions-get-flutter-version-env@b5f12dbe2915d60c827758258d6193df1dacca1d
       with:
-        pubspec-file-path: Application/Login-UI-flutter-master/pubspec.yaml
+        pubspec-file-path: ../Application/Login-UI-flutter-master/pubspec.yaml
     - name: Cache Flutter
       id: flutter-cache
       uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
