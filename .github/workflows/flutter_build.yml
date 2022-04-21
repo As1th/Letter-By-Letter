@@ -2,7 +2,7 @@ name: Flutter
 
 defaults:
   run:
-    working-directory: working-directory: Application/Login-UI-flutter-master
+    working-directory: Application/Login-UI-flutter-master
 
 on:
   push:
