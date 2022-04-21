@@ -12,7 +12,7 @@ on:
 
     
 jobs:
-  build:
+  build_flutter:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +35,7 @@ jobs:
     
     # Check for any formatting issues in the code.
     - name: Verify formatting
-      run: flutter format --set-exit-if-changed .
+      run: flutter format
     
     # Statically analyze the Dart code for any errors.
     - name: Analyze project source
