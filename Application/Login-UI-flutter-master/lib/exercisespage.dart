@@ -113,7 +113,7 @@ class _ExercisePageState extends State<ExercisePage> {
                                 if(gateways[3] == 1) {
                                   exerciseNumber = 3;
                                   target = "D_U";
-                                  Navigator.pushNamed(context, 'exercise3');
+                                  Navigator.pushNamed(context, 'exercise4');
                                 } else {
 
                                 }
@@ -134,13 +134,14 @@ class _ExercisePageState extends State<ExercisePage> {
                                 if(gateways[4] == 1) {
                                   exerciseNumber = 4;
                                   target = "E_U";
-                                  Navigator.pushNamed(context, 'exercise4');
+                                  Navigator.pushNamed(context, 'exercise5');
                                 } else {
 
                                 }
                               },
                             ),
                           ),
+
 
                           Container(
                             margin: EdgeInsets.all(15),
@@ -154,7 +155,7 @@ class _ExercisePageState extends State<ExercisePage> {
                                 if(gateways[5] == 1) {
                                   exerciseNumber = 5;
                                   target = "F_U";
-                                  Navigator.pushNamed(context, 'exercise5');
+                                  Navigator.pushNamed(context, 'exercise6');
                                 } else {
 
                                 }

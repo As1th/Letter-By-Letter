@@ -19,10 +19,14 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: 2.10.3
 
 dependencies:
   http: ^0.13.4
+  path: ^1.8.0
+  path_provider: ^2.0.9
+  image_picker:
+  image_cropper: ^1.4.1
+
   flutter:
     sdk: flutter
 
@@ -32,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
 

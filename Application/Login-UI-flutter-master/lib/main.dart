@@ -18,8 +18,8 @@ import 'severError.dart';
 var score= 0;
 var exerciseNumber = 0;
 var target = "A_U";
-var gateways = [1,0,0,0,0,0];
-var highScores = ["0","LOCK","LOCK","LOCK","LOCK","LOCK"];
+var gateways = [1,0,0,0,0,0,0];
+var highScores = ["0","LOCK","LOCK","LOCK","LOCK","LOCK", "LOCK"];
 
 void main() {
   runApp(MaterialApp(
